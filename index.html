@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAT ME!</title>
+    <title>Ball Face Cat</title>
     <style>
         body {
             text-align: center;
@@ -40,7 +40,7 @@
                 width: 50vw;  /* In mobile, image takes half the screen width */
             }
         }
-        video {
+        #homeImage {
             width: 100%;
             height: auto;
         }
@@ -49,12 +49,9 @@
 <body>
     <!-- Home Screen -->
     <div id="homeScreen">
-        <h1>Pat its' ass.</h1>
-        <!-- Intro Animation -->
-        <video id="introVideo" autoplay>
-            <source src="intro.mp4" type="video/mp4">
-           Your browser does not support video playback.
-        </video>
+        <h1>Pat Its' Ass!</h1>
+        <!-- Home Image (Static) -->
+        <img id="homeImage" src="home_image.jpg" alt="首頁圖片">
         <br>
         <audio id="bgMusic" src="background.mp3" loop></audio>
         <button class="button" onclick="startGame()">Start</button>
@@ -64,7 +61,8 @@
     <div id="gameScreen">
         <h1>Pat！</h1>
         <p id="score">Point: 0</p>
-        <img id="clickImage" src="normal.png" onclick="increaseScore()">
+        <!-- This is where your animation goes -->
+        <img id="clickImage" src="normal.gif" onclick="increaseScore()"> <!-- normal.png 是動畫 -->
     </div>
 
     <audio id="clickSound" src="click.mp3"></audio>
@@ -72,7 +70,7 @@
     <script>
         let score = 0;
 
-        // Start game after intro animation
+        // Start game after intro image
         function startGame() {
             document.getElementById("homeScreen").style.display = "none";
             document.getElementById("gameScreen").style.display = "block";
@@ -86,10 +84,10 @@
             document.getElementById("clickImage").src = "clicked.png";  // Change image on click
             document.getElementById("clickSound").play();  // Play click sound
 
-            // Change image back to normal after a brief moment
+            // Change image back to animated image after a brief moment
             setTimeout(() => {
-                document.getElementById("clickImage").src = "normal.png";
-            }, 200);
+                document.getElementById("clickImage").src = "normal.gif";
+            }, 200); // 200 ms delay to change back
         }
 
         // Show home screen when the page loads
