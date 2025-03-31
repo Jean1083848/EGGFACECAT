@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點擊遊戲</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #homeScreen, #gameScreen {
+            display: none;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #score {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        #clickImage {
+            width: 30vw;  /* 30% of viewport width */
+            height: auto;  /* Adjust height based on width */
+            cursor: pointer;
+        }
+        /* For smaller screens like mobile */
+        @media (max-width: 768px) {
+            #clickImage {
+                width: 50vw;  /* In mobile, image takes half the screen width */
+            }
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Screen -->
+    <div id="homeScreen">
+        <h1>歡迎來到點擊遊戲</h1>
+        <!-- Intro Animation -->
+        <video id="introVideo" autoplay>
+            <source src="intro.mp4" type="video/mp4">
+            您的瀏覽器不支援影片播放。
+        </video>
+        <br>
+        <audio id="bgMusic" src="background.mp3" loop></audio>
+        <button class="button" onclick="startGame()">開始遊戲</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen">
+        <h1>點擊得分！</h1>
+        <p id="score">分數: 0</p>
+        <img id="clickImage" src="normal.png" onclick="increaseScore()">
+    </div>
+
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <script>
+        let score = 0;
+
+        // Start game after intro animation
+        function startGame() {
+            document.getElementById("homeScreen").style.display = "none";
+            document.getElementById("gameScreen").style.display = "block";
+            document.getElementById("bgMusic").play();  // Start background music
+        }
+
+        // Increase score and change image and play sound
+        function increaseScore() {
+            score++;
+            document.getElementById("score").innerText = "分數: " + score;
+            document.getElementById("clickImage").src = "clicked.png";  // Change image on click
+            document.getElementById("clickSound").play();  // Play click sound
+
+            // Change image back to normal after a brief moment
+            setTimeout(() => {
+                document.getElementById("clickImage").src = "normal.png";
+            }, 200);
+        }
+
+        // Show home screen when the page loads
+        window.onload = function() {
+            document.getElementById("homeScreen").style.display = "block";
+        }
+    </script>
+</body>
+</html>
