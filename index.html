@@ -63,7 +63,7 @@
         <h1>Pat！</h1>
         <p id="score">Point: 0</p>
         <!-- This is where your animation goes -->
-        <img id="clickImage" src="normal.gif" onclick="increaseScore()"> <!-- normal.png 是動畫 -->
+        <img id="clickImage" src="normal.gif" onclick="increaseScore()"> <!-- pated.png 是動畫 -->
     </div>
 
     <audio id="clickSound" src="click.mp3"></audio>
@@ -82,13 +82,13 @@
         function increaseScore() {
             score++;
             document.getElementById("score").innerText = "Point: " + score;
-            document.getElementById("clickImage").src = "clicked.png";  // Change image on click
+            document.getElementById("clickImage").src = "pated.png";  // Change image on click
             document.getElementById("clickSound").play();  // Play click sound
 
             // Change image back to animated image after a brief moment
             setTimeout(() => {
                 document.getElementById("clickImage").src = "normal.gif";
-            }, 200); // 200 ms delay to change back
+            }, 150); // 150 ms delay to change back
         }
 
         // Show home screen when the page loads
